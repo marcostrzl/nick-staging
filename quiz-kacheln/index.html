@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Quiz Kacheln Nick Haasmann</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+/* Quiz Variante 2 „Große Kacheln“: jede Antwort als Kachel mit Symbol, 1 Frage pro Bildschirm. Look aus design.md, bewusst nur dunkel. */
+:root {
+  color-scheme: dark;
+  --black: #000; --s1: #111; --s2: #1F1F1F; --s3: #141414;
+  --red: #FF4433; --red-track: rgba(255,68,51,.24);
+  --cta: #009B0A; --green: #63C454; --green-item: #022C22;
+  --fg: #fff; --text: rgba(255,255,255,.64); --meta: #B2B2B2; --line: rgba(255,255,255,.08); --line-2: rgba(255,255,255,.15);
+  --font: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+body { margin: 0; min-height: 100vh; background: var(--black); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased; overflow-x: hidden;
+  padding: 0 max(16px, env(safe-area-inset-right, 0px)) calc(32px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
+body::before { content: ""; position: fixed; inset: 0; pointer-events: none;
+  background: radial-gradient(70% 520px at 50% -140px, rgba(255,68,51,.42), rgba(255,68,51,.1) 55%, transparent 80%),
+    linear-gradient(90deg, transparent 0 6%, rgba(255,255,255,.025) 6% 16%, transparent 16% 26%, rgba(255,255,255,.04) 26% 36%, transparent 36% 64%, rgba(255,255,255,.04) 64% 74%, transparent 74% 84%, rgba(255,255,255,.025) 84% 94%, transparent 94%); }
+.shell { position: relative; max-width: 940px; margin: 0 auto; display: flex; flex-direction: column; gap: 34px; padding-top: calc(20px + env(safe-area-inset-top, 0px)); }
+.top { display: flex; align-items: center; gap: 12px; background: var(--s2); border-radius: 8px; padding: 10px 14px; }
+.top svg { width: 24px; height: 24px; color: var(--red); flex: none; }
+.top span { font-size: 13px; color: var(--meta); margin-left: auto; text-align: right; }
+.top b { color: #fff; }
+.main { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 28px; }
+.lbl { font-size: 12.5px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--red); }
+h1 { margin: 0; font-size: clamp(26px, 4.2vw, 40px); line-height: 1.14; letter-spacing: -.04em; font-weight: 600; text-wrap: balance; max-width: 26ch;
+  background: linear-gradient(180deg, #fff 35%, #a3a3a3); -webkit-background-clip: text; background-clip: text; color: transparent; }
+h1:focus { outline: none; }
+.sub { margin: -14px 0 0; color: var(--text); max-width: 56ch; }
+.grid { display: grid; gap: 12px; width: 100%; }
+.g2 { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 560px; }
+.g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 760px; }
+.g4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.g5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.tile { font: inherit; color: #fff; background: rgba(20,20,20,.92); border: 1px solid var(--line-2); border-radius: 14px; padding: 24px 12px 20px; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; transition: border-color .15s, background .15s, transform .12s; min-width: 0; }
+.tile:hover { border-color: rgba(255,68,51,.65); background: #1b1110; transform: translateY(-2px); }
+.tile.sel { border-color: var(--green); background: var(--green-item); }
+.tile .ic { width: 52px; height: 52px; border-radius: 14px; --ic: var(--red); background: color-mix(in srgb, var(--ic) 15%, transparent); display: grid; place-items: center; color: var(--ic); }
+.tile .ic svg { width: 28px; height: 28px; }
+.tile b { font-size: 16.5px; font-weight: 600; line-height: 1.25; }
+.tile span { font-size: 13px; color: var(--meta); line-height: 1.35; }
+.coins { display: flex; gap: 4px; height: 36px; align-items: flex-end; }
+.coins i { width: 9px; border-radius: 3px; background: currentColor; }
+.num { font-size: 26px; font-weight: 700; letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+.grid.scale { grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 8px; max-width: 760px; }
+.grid.scale .tile { padding: 18px 0; gap: 0; border-radius: 10px; border-color: color-mix(in srgb, var(--sc) 55%, transparent); background: color-mix(in srgb, var(--sc) 14%, #111); }
+.grid.scale .tile.sel { background: var(--green-item); border-color: var(--green); }
+.scale-wrap { width: 100%; max-width: 760px; display: flex; flex-direction: column; gap: 10px; }
+.scale-bar { height: 6px; border-radius: 6px; background: linear-gradient(90deg, #FF4433, #E5C04B 55%, #63C454); }
+.scale-l { display: flex; justify-content: space-between; width: 100%; font-size: 13px; color: var(--meta); }
+.scale-l b { color: #fff; font-weight: 600; }
+.prog { width: 100%; max-width: 460px; display: flex; flex-direction: column; gap: 8px; }
+.segs { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
+.segs i { height: 6px; border-radius: 6px; background: var(--red-track); }
+.segs i.on { background: var(--red); }
+.segs i.now { background: linear-gradient(90deg, var(--red) 50%, var(--red-track) 50%); }
+.prog small { font-size: 12.5px; color: var(--meta); font-variant-numeric: tabular-nums; }
+.back { background: none; border: 0; color: var(--meta); font: inherit; font-size: 14px; cursor: pointer; padding: 4px 0; display: inline-flex; gap: 6px; align-items: center; }
+.back svg { width: 16px; height: 16px; }
+button:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+.cta { display: inline-flex; align-items: center; justify-content: center; gap: 10px; height: 64px; padding: 0 34px; min-width: 300px; border-radius: 8px; border: 1px solid rgba(255,255,255,.61);
+  background: radial-gradient(60% 30% at 50% 100%, rgba(255,255,255,.5), transparent), var(--cta); color: #fff; font: 600 16px/1 var(--font); cursor: pointer;
+  box-shadow: 0 24px 48px -16px rgba(0,167,11,.55), inset -4px -4px 11px rgba(255,255,255,.56), inset 4px 4px 11px rgba(255,255,255,.56); }
+.cta svg { width: 20px; height: 20px; }
+.start-tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; width: 100%; max-width: 680px; }
+.start-tiles div { background: rgba(20,20,20,.9); border: 1px solid var(--line); border-radius: 12px; padding: 16px; font-size: 14px; color: rgba(255,255,255,.85); display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.start-tiles svg { width: 24px; height: 24px; color: var(--green); }
+.ok { width: 76px; height: 76px; border-radius: 50%; background: var(--cta); display: grid; place-items: center; box-shadow: 0 18px 44px -12px rgba(0,167,11,.6); }
+.ok svg { width: 36px; height: 36px; color: #fff; }
+.spin { width: 46px; height: 46px; border-radius: 50%; border: 3px solid var(--red-track); border-top-color: var(--red); animation: spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.test { width: 100%; max-width: 520px; text-align: left; font-size: 13px; color: var(--meta); background: #0b0b0b; border: 1px dashed var(--line-2); border-radius: 10px; padding: 14px 16px; }
+.test b { color: #fff; } .test table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+.test td { padding: 4px 0; border-top: 1px solid var(--line); } .test td:last-child { text-align: right; color: #fff; white-space: nowrap; padding-left: 12px; }
+.fade { animation: fade .3s ease both; } @keyframes fade { from { opacity: .001; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.trust { text-align: center; font-size: 12.5px; color: rgba(255,255,255,.42); }
+@media (max-width: 760px) {
+  .g4, .g3, .g5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .g5 .tile:last-child { grid-column: 1 / -1; }
+  .grid.scale { gap: 4px; } .grid.scale .tile { padding: 14px 0; } .grid.scale .num { font-size: 17px; }
+  .g3 .tile:last-child { grid-column: 1 / -1; }
+  .start-tiles { grid-template-columns: 1fr; }
+  .tile { padding: 18px 10px 16px; } .tile .ic { width: 44px; height: 44px; } .tile b { font-size: 15.5px; }
+  .cta { min-width: 0; width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) { .fade, .spin { animation: none; } .tile { transition: none; } .tile:hover { transform: none; } }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="left" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="right" viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="tap" viewBox="0 0 24 24"><path d="M9 11V5.5a1.5 1.5 0 013 0V11m0-1.5a1.5 1.5 0 013 0V12m0-1a1.5 1.5 0 013 0v4.5a5.5 5.5 0 01-5.5 5.5H11a5 5 0 01-4.2-2.3L4.5 15a1.5 1.5 0 012.4-1.8L9 15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+  <symbol id="brief" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 7V5h6v2M3 12h18" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+  <symbol id="crown" viewBox="0 0 24 24"><path d="M4 18h16l1-10-5 4-4-6-4 6-5-4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+  <symbol id="user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="book" viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 016.5 3H20v15H6.5A2.5 2.5 0 004 20.5zM4 20.5A2.5 2.5 0 006.5 23H20" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+  <symbol id="pause" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 9v6M14 9v6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="repeat" viewBox="0 0 24 24"><path d="M17 3l3 3-3 3M4 11V9a3 3 0 013-3h13M7 21l-3-3 3-3M20 13v2a3 3 0 01-3 3H4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="one" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10.5 9l2-1.5V17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="new" viewBox="0 0 24 24"><path d="M12 3l2.2 5.8L20 11l-5.8 2.2L12 19l-2.2-5.8L4 11l5.8-2.2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+  <symbol id="cal" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3.5 10h17M8 3v4M16 3v4M9 15l2 2 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="maybe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.5 9.5a2.5 2.5 0 114 2c-1 .6-1.5 1.2-1.5 2.5M12 17h.01" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="no" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 9l6 6M15 9l-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/></symbol>
+  <symbol id="pill" viewBox="0 0 24 24"><rect x="2.5" y="8" width="19" height="8" rx="4" transform="rotate(-35 12 12)" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.6 8.6l4.6 6.8" stroke="currentColor" stroke-width="2" transform="rotate(0)"/></symbol>
+  <symbol id="bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+  <symbol id="moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 019.5 4a8 8 0 1010.5 10.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+  <symbol id="body" viewBox="0 0 24 24"><circle cx="12" cy="4.5" r="2.2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5 9l7 1.5L19 9M12 10.5V15m0 0l-3 6m3-6l3 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="brain" viewBox="0 0 24 24"><path d="M9 4a3 3 0 00-3 3 3 3 0 00-2 5 3 3 0 002 5 3 3 0 003 3h1V4zM15 4a3 3 0 013 3 3 3 0 012 5 3 3 0 01-2 5 3 3 0 01-3 3h-1V4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+  <symbol id="apple" viewBox="0 0 24 24"><path d="M12 7c-2-1.5-7-1-7 5 0 4 3 9 5 9 1 0 1.3-.5 2-.5s1 .5 2 .5c2 0 5-5 5-9 0-6-5-6.5-7-5zM12 7c0-2 1-4 3-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<div class="shell">
+  <div class="top">
+    <svg viewBox="0 0 24 24" aria-label="Nick Haasmann"><path d="M10.7 0H9a.35.35 0 00-.36.35v12.05L7.02 4.58a.47.47 0 00-.43-.34H4.68a.35.35 0 00-.36.35v14.95c0 .19.16.35.36.35h1.68c.2 0 .36-.16.36-.35v-6.36l.33 1.5 1.54 8.73c.01.07.08.12.15.12h1.96c.2 0 .36-.16.36-.35V.35A.35.35 0 0010.7 0zM19.32 4.12h-1.68c-.2 0-.36.16-.36.35v6.36l-.33-1.5-1.54-8.73A.15.15 0 0015.26.48H13.3c-.2 0-.36.16-.36.35v23.07c0 .19.16.35.36.35h1.68c.2 0 .36-.16.36-.35V11.6l1.61 7.82c.04.19.24.34.44.34h1.91c.2 0 .36-.16.36-.35V4.47a.35.35 0 00-.36-.35z" fill="currentColor"/></svg>
+    <span><b>Sonntag, 6. Dezember, 11 Uhr</b><br>Live-Webinar mit Nick Haasmann</span>
+  </div>
+  <main class="main" id="main" aria-live="polite"></main>
+  <p class="trust">Deine Antworten sieht nur das Team von Nick. Sie helfen uns, das Webinar vorzubereiten.</p>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var DANKE_URL = "";          // Danke-Seite eintragen, sobald die Variante feststeht
+  var QUALIFIED_FROM = 60;     // Vorschlag: ab diesem Score gilt ein Lead als qualifiziert
+  var params = new URLSearchParams(location.search), TEST = params.has("test");
+  var vorname = params.get("vorname") || "";
+  try { if (!vorname) vorname = JSON.parse(sessionStorage.getItem("nh-lead") || "{}").vorname || ""; } catch (e) {}
+  vorname = vorname.trim().slice(0, 40);
+
+  /* Fragen, Punkte und Symbole (Fragen und Punkte abgestimmt mit Marco am 17.11.2026) */
+  var Q = [
+    { id: "budget", t: "Wie viel investierst du im Monat in deine Gesundheit?", s: "Zum Beispiel für Training, Ernährung und Supplements.", g: "g4",
+      a: [["Unter 100 €", 0, "coins:1", "eher wenig"], ["100 bis 300 €", 10, "coins:2", "Gym und ein paar Extras"], ["300 bis 500 €", 20, "coins:3", "Training und gezielte Ernährung"], ["Über 500 €", 30, "coins:4", "Gesundheit hat Priorität"]] },
+    { id: "beruf", t: "Was beschreibt deine berufliche Situation am besten?", g: "g5",
+      a: [["Unternehmer oder selbstständig", 20, "brief"], ["Führungskraft", 15, "crown"], ["Angestellt", 10, "user"], ["In Ausbildung oder Studium", 3, "book"], ["Gerade ohne Job", 0, "pause"]] },
+    { id: "wille", t: "Wie sehr willst du in den nächsten 3 Monaten etwas an deiner Gesundheit verändern?", s: "1 heißt kaum, 10 heißt unbedingt.", scale: true },
+    { id: "coach", t: "Hast du schon einmal Geld für einen Coach, Trainer oder ein Programm ausgegeben?", g: "g3",
+      a: [["Ja, mehrfach", 15, "repeat"], ["Ja, einmal", 10, "one"], ["Nein, noch nie", 0, "new"]] },
+    { id: "live", t: "Bist du am Sonntag, 6. Dezember, um 11 Uhr live dabei?", g: "g3",
+      a: [["Ja, sicher", 10, "cal"], ["Wahrscheinlich", 5, "maybe"], ["Eher nicht", 0, "no"]] },
+    { id: "supps", t: "Nimmst du heute schon Supplements?", g: "g3",
+      a: [["Ja, gezielt nach Plan", 5, "target"], ["Ja, aber ohne Plan", 3, "pill"], ["Nein", 0, "no"]] },
+    { id: "bremse", t: "Welcher Bereich bremst dich gerade am meisten?", g: "g5",
+      a: [["Energie im Alltag", 5, "bolt"], ["Schlaf", 5, "moon"], ["Körperform", 5, "body"], ["Stress und Fokus", 5, "brain"], ["Ernährung", 5, "apple"]] }
+  ];
+
+  var ICON_COL = ["#FF4433", "#E5C04B", "#4DA3FF", "#A98BFF", "#2EC4B6"];
+  var SCALE_COL = ["#FF4433", "#FF5A33", "#FF7433", "#F58E3A", "#E5A843", "#E5C04B", "#C4C24E", "#A0C350", "#7FC452", "#63C454"];
+  var main = document.getElementById("main"), step = -1, answers = [], busy = false;
+  window.dataLayer = window.dataLayer || [];
+  function track(ev, data) { window.dataLayer.push(Object.assign({ event: ev }, data || {})); }
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  function icon(id) { var s = document.createElementNS("http://www.w3.org/2000/svg", "svg"), u = document.createElementNS("http://www.w3.org/2000/svg", "use"); u.setAttribute("href", "#" + id); s.appendChild(u); s.setAttribute("aria-hidden", "true"); return s; }
+  function fresh() { main.textContent = ""; main.classList.remove("fade"); void main.offsetWidth; main.classList.add("fade"); window.scrollTo(0, 0); }
+  function prog() {
+    var p = el("div", "prog"), s = el("div", "segs");
+    for (var i = 0; i < Q.length; i++) s.appendChild(el("i", i < step ? "on" : i === step ? "now" : ""));
+    p.appendChild(s); p.appendChild(el("small", null, Math.round(step / Q.length * 100) + " % geschafft")); return p;
+  }
+  function visual(spec) {
+    var w = el("span", "ic");
+    if (spec.indexOf("coins:") === 0) { var n = +spec.split(":")[1], c = el("span", "coins"); for (var k = 0; k < 4; k++) { var i = el("i"); i.style.height = (8 + k * 9) + "px"; i.style.opacity = k < n ? "1" : ".22"; c.appendChild(i); } w.appendChild(c); w.style.background = "none"; w.style.width = "auto"; }
+    else w.appendChild(icon(spec));
+    return w;
+  }
+
+  function render() {
+    fresh();
+    if (step < 0) return start();
+    if (step >= Q.length) return end();
+    var q = Q[step];
+    main.appendChild(el("span", "lbl", "Frage " + (step + 1) + " von " + Q.length));
+    var h = el("h1", null, q.t); h.id = "q"; h.tabIndex = -1; main.appendChild(h);
+    if (q.s) main.appendChild(el("p", "sub", q.s));
+    var prev = answers[step], g;
+    if (q.scale) {
+      var sw = el("div", "scale-wrap");
+      g = el("div", "grid scale");
+      for (var v = 1; v <= 10; v++) (function (v) {
+        var b = el("button", "tile" + (prev && prev.a === String(v) ? " sel" : "")); b.type = "button";
+        b.style.setProperty("--sc", SCALE_COL[v - 1]); b.setAttribute("aria-label", v + " von 10");
+        b.appendChild(el("span", "num", String(v)));
+        b.addEventListener("click", function () { choose(b, q, String(v), Math.round((v - 1) / 9 * 15)); });
+        g.appendChild(b);
+      })(v);
+      sw.appendChild(g); sw.appendChild(el("div", "scale-bar"));
+      var l = el("div", "scale-l"); l.innerHTML = "<span><b>1</b> = kaum</span><span><b>10</b> = unbedingt</span>"; sw.appendChild(l);
+      main.appendChild(sw);
+    } else {
+      g = el("div", "grid " + q.g);
+      q.a.forEach(function (a, i) {
+        var b = el("button", "tile" + (prev && prev.a === a[0] ? " sel" : "")); b.type = "button";
+        var vis = visual(a[2]); vis.style.setProperty("--ic", ICON_COL[i % ICON_COL.length]); b.appendChild(vis); b.appendChild(el("b", null, a[0])); if (a[3]) b.appendChild(el("span", null, a[3]));
+        b.addEventListener("click", function () { choose(b, q, a[0], a[1]); });
+        g.appendChild(b);
+      });
+      main.appendChild(g);
+    }
+    g.setAttribute("role", "group"); g.setAttribute("aria-labelledby", "q");
+    main.appendChild(prog());
+    if (step > 0) { var bk = el("button", "back"); bk.type = "button"; bk.appendChild(icon("left")); bk.appendChild(document.createTextNode("Zurück")); bk.addEventListener("click", function () { step--; render(); }); main.appendChild(bk); }
+    h.focus({ preventScroll: true });
+  }
+  function choose(b, q, a, pts) {
+    if (busy) return; busy = true;
+    main.querySelectorAll(".tile").forEach(function (t) { t.classList.remove("sel"); }); b.classList.add("sel");
+    answers[step] = { frage: q.id, a: a, pts: pts }; track("quiz_answer", { frage: q.id, antwort: a, schritt: step + 1 });
+    setTimeout(function () { busy = false; step++; render(); }, 300);
+  }
+  function start() {
+    main.appendChild(el("span", "lbl", "Fast geschafft"));
+    var h = el("h1", null, (vorname ? "Danke, " + vorname + ". " : "") + "Deine Anmeldung ist fast fertig, es fehlen nur noch 7 kurze Fragen."); h.tabIndex = -1; main.appendChild(h);
+    main.appendChild(el("p", "sub", "Mit deinen Antworten weiß Nick, wer am Sonntag dabei ist und welche Themen euch am meisten beschäftigen."));
+    var t = el("div", "start-tiles");
+    [["clock", "Dauert weniger als 1 Minute"], ["tap", "Antworten einfach antippen"], ["mail", "Danach bekommst du alle Infos zum Webinar"]].forEach(function (x) { var d = el("div"); d.appendChild(icon(x[0])); d.appendChild(document.createTextNode(x[1])); t.appendChild(d); });
+    main.appendChild(t);
+    var b = el("button", "cta"); b.type = "button"; b.appendChild(document.createTextNode("Fragen starten")); b.appendChild(icon("right"));
+    b.addEventListener("click", function () { track("quiz_start"); step = 0; render(); }); main.appendChild(b);
+  }
+  function end() {
+    var score = answers.reduce(function (s, a) { return s + (a ? a.pts : 0); }, 0), ok = score >= QUALIFIED_FROM;
+    track("quiz_complete", { lqs: score, qualifiziert: ok, antworten: answers }); if (ok) track("qualified_lead", { lqs: score });
+    main.appendChild(el("div", "spin")); main.appendChild(el("p", "sub", "Deine Antworten werden gespeichert."));
+    setTimeout(function () {
+      if (DANKE_URL && !TEST) { location.href = DANKE_URL; return; }
+      fresh();
+      var c = el("span", "ok"); c.appendChild(icon("check")); main.appendChild(c);
+      main.appendChild(el("h1", null, (vorname ? "Danke, " + vorname + ", du bist" : "Danke, du bist") + " für Sonntag um 11 Uhr angemeldet."));
+      main.appendChild(el("p", "sub", "Hier leitet die Seite später automatisch auf die Danke-Seite weiter."));
+      var t = el("div", "test"); t.innerHTML = "<b>Testansicht:</b> Lead Quality Score <b>" + score + " von 100</b>, " + (ok ? "qualifiziert" : "nicht qualifiziert") + " (Schwelle " + QUALIFIED_FROM + ").";
+      var tb = el("table"); answers.forEach(function (a) { var tr = el("tr"); tr.appendChild(el("td", null, a.a)); tr.appendChild(el("td", null, a.pts + " P.")); tb.appendChild(tr); }); t.appendChild(tb); main.appendChild(t);
+    }, 900);
+  }
+  render();
+})();
+</script>
+</body>
+</html>

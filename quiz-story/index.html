@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Quiz Story Nick Haasmann</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+/* Quiz Variante 9 „Story-Format“: Hochformat wie eine Instagram-Story, auf dem Handy bildschirmfüllend, am Desktop als Handy-Rahmen. Look aus design.md, bewusst nur dunkel. */
+:root {
+  color-scheme: dark;
+  --black: #000; --red: #FF4433; --cta: #009B0A; --green: #63C454;
+  --fg: #fff; --meta: #C9C9C9;
+  --font: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; background: var(--black); color: var(--fg); font-family: var(--font); -webkit-font-smoothing: antialiased; overflow: hidden; }
+.bg { position: fixed; inset: 0; background: radial-gradient(60% 50% at 50% 0%, rgba(255,68,51,.35), transparent 70%), #000; }
+.bg img { width: 100%; height: 100%; object-fit: cover; filter: blur(40px) brightness(.35); transform: scale(1.2); }
+.frame { position: relative; height: 100%; display: grid; place-items: center; padding: 20px; }
+.story { position: relative; height: min(calc(100% - 36px), 860px); aspect-ratio: 9 / 16; max-width: 100%; border-radius: 26px; overflow: hidden; background: #000; box-shadow: 0 40px 140px -30px rgba(255,68,51,.5); border: 1px solid rgba(255,255,255,.12); }
+.slide { position: absolute; inset: 0; }
+.slide > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.04); transition: transform 6s ease-out; }
+.slide.in > img { transform: scale(1.12); }
+.shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.05) 22%, rgba(0,0,0,.15) 38%, rgba(0,0,0,.88) 64%, rgba(0,0,0,.96) 100%); }
+.ui { position: absolute; inset: 0; display: flex; flex-direction: column; padding: calc(12px + env(safe-area-inset-top, 0px)) 14px calc(20px + env(safe-area-inset-bottom, 0px)); }
+.segs { display: flex; gap: 4px; }
+.segs i { flex: 1; height: 3px; border-radius: 3px; background: rgba(255,255,255,.3); overflow: hidden; position: relative; }
+.segs i.on { background: #fff; }
+.segs i.now::after { content: ""; position: absolute; inset: 0; background: #fff; transform-origin: left; animation: fill 8s linear forwards; }
+@keyframes fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.who { display: flex; align-items: center; gap: 10px; margin-top: 12px; }
+.who img { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; border: 2px solid var(--red); }
+.who b { font-size: 14px; font-weight: 600; display: block; line-height: 1.2; }
+.who span { font-size: 12px; color: var(--meta); }
+.who .back { margin-left: auto; width: 34px; height: 34px; border-radius: 50%; border: 0; background: rgba(255,255,255,.14); color: #fff; display: grid; place-items: center; cursor: pointer; }
+.who .back svg { width: 16px; height: 16px; }
+.content { margin-top: auto; display: flex; flex-direction: column; gap: 14px; }
+.tag { align-self: flex-start; font-size: 11.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #fff; background: var(--red); padding: 5px 10px; border-radius: 6px; }
+h1 { margin: 0; font-size: clamp(22px, 6.2vw, 27px); line-height: 1.18; letter-spacing: -.03em; font-weight: 700; text-wrap: balance; text-shadow: 0 2px 20px rgba(0,0,0,.5); }
+h1:focus { outline: none; }
+.sub { margin: -4px 0 0; color: var(--meta); font-size: 14.5px; line-height: 1.45; }
+.opts { display: flex; flex-direction: column; gap: 8px; }
+.opt { font: inherit; font-size: 15.5px; font-weight: 500; color: #fff; text-align: center; padding: 13px 16px; border-radius: 60px; cursor: pointer; background: rgba(255,255,255,.13); border: 1px solid rgba(255,255,255,.28); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); transition: background .15s, border-color .15s, transform .1s; }
+.opt:hover { background: rgba(255,255,255,.22); }
+.opt:active { transform: scale(.98); }
+.opt.sel { background: var(--cta); border-color: rgba(255,255,255,.6); box-shadow: 0 12px 30px -10px rgba(0,167,11,.8); }
+.scale { display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 4px; }
+.scale .opt { padding: 13px 0; border-radius: 10px; font-weight: 700; font-size: 15px; font-variant-numeric: tabular-nums; }
+.scale-bar { height: 5px; border-radius: 5px; background: linear-gradient(90deg, #FF4433, #E5C04B 55%, #63C454); margin-top: -4px; }
+.scale-l { display: flex; justify-content: space-between; font-size: 12.5px; color: var(--meta); margin-top: -6px; }
+.scale-l b { color: #fff; }
+.cta { font: 600 16px/1 var(--font); color: #fff; height: 56px; border-radius: 60px; border: 1px solid rgba(255,255,255,.61); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;
+  background: radial-gradient(60% 30% at 50% 100%, rgba(255,255,255,.5), transparent), var(--cta); box-shadow: 0 20px 40px -14px rgba(0,167,11,.7), inset -4px -4px 11px rgba(255,255,255,.5), inset 4px 4px 11px rgba(255,255,255,.5); }
+.cta svg { width: 18px; height: 18px; }
+.facts { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; font-size: 14.5px; }
+.facts li { display: flex; gap: 10px; align-items: center; }
+.facts svg { width: 20px; height: 20px; color: var(--green); flex: none; }
+.ok { width: 64px; height: 64px; border-radius: 50%; background: var(--cta); display: grid; place-items: center; box-shadow: 0 16px 40px -12px rgba(0,167,11,.7); }
+.ok svg { width: 30px; height: 30px; }
+.test { font-size: 12px; color: var(--meta); background: rgba(0,0,0,.6); border: 1px dashed rgba(255,255,255,.25); border-radius: 10px; padding: 10px 12px; max-height: 150px; overflow: auto; }
+.test b { color: #fff; }
+.spin { width: 40px; height: 40px; border-radius: 50%; border: 3px solid rgba(255,255,255,.25); border-top-color: #fff; animation: spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.fade { animation: fade .35s ease both; } @keyframes fade { from { opacity: .001; } to { opacity: 1; } }
+button:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+.hint { position: absolute; bottom: 4px; margin: 0; left: 0; right: 0; text-align: center; font-size: 12px; color: rgba(255,255,255,.45); }
+@media (max-width: 560px) {
+  .frame { padding: 0; }
+  .story { height: 100%; width: 100%; aspect-ratio: auto; border-radius: 0; border: 0; }
+  .hint { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .fade, .spin, .segs i.now::after { animation: none; } .slide > img { transition: none; } }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="ccheck" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="currentColor" opacity=".2"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="left" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="right" viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+<div class="bg"><img src="img/nick-buehne-publikum.jpg" alt=""></div>
+<div class="frame">
+  <div class="story" id="story" aria-live="polite"></div>
+  <p class="hint">Auf dem Handy füllt die Story den ganzen Bildschirm.</p>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var DANKE_URL = "";          // Danke-Seite eintragen, sobald die Variante feststeht
+  var QUALIFIED_FROM = 60;     // Vorschlag: ab diesem Score gilt ein Lead als qualifiziert
+  var IMGS = ["img/nick-buehne-headset.jpg", "img/nick-buehne-publikum.jpg"];
+  var params = new URLSearchParams(location.search), TEST = params.has("test");
+  var vorname = params.get("vorname") || "";
+  try { if (!vorname) vorname = JSON.parse(sessionStorage.getItem("nh-lead") || "{}").vorname || ""; } catch (e) {}
+  vorname = vorname.trim().slice(0, 40);
+
+  /* Fragen und Punkte (abgestimmt mit Marco am 17.11.2026) */
+  var Q = [
+    { id: "budget", t: "Wie viel investierst du im Monat in deine Gesundheit?", s: "Zum Beispiel für Training, Ernährung und Supplements.", a: [["Unter 100 €", 0], ["100 bis 300 €", 10], ["300 bis 500 €", 20], ["Über 500 €", 30]] },
+    { id: "beruf", t: "Was beschreibt deine berufliche Situation am besten?", a: [["Unternehmer oder selbstständig", 20], ["Führungskraft", 15], ["Angestellt", 10], ["In Ausbildung oder Studium", 3], ["Gerade ohne Job", 0]] },
+    { id: "wille", t: "Wie sehr willst du in den nächsten 3 Monaten etwas an deiner Gesundheit verändern?", scale: true },
+    { id: "coach", t: "Hast du schon einmal Geld für einen Coach, Trainer oder ein Programm ausgegeben?", a: [["Ja, mehrfach", 15], ["Ja, einmal", 10], ["Nein, noch nie", 0]] },
+    { id: "live", t: "Bist du am Sonntag, 6. Dezember, um 11 Uhr live dabei?", a: [["Ja, sicher", 10], ["Wahrscheinlich", 5], ["Eher nicht", 0]] },
+    { id: "supps", t: "Nimmst du heute schon Supplements?", a: [["Ja, gezielt nach Plan", 5], ["Ja, aber ohne Plan", 3], ["Nein", 0]] },
+    { id: "bremse", t: "Welcher Bereich bremst dich gerade am meisten?", a: [["Energie im Alltag", 5], ["Schlaf", 5], ["Körperform", 5], ["Stress und Fokus", 5], ["Ernährung", 5]] }
+  ];
+
+  var story = document.getElementById("story"), step = -1, answers = [], busy = false;
+  window.dataLayer = window.dataLayer || [];
+  function track(ev, data) { window.dataLayer.push(Object.assign({ event: ev }, data || {})); }
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  function icon(id) { var s = document.createElementNS("http://www.w3.org/2000/svg", "svg"), u = document.createElementNS("http://www.w3.org/2000/svg", "use"); u.setAttribute("href", "#" + id); s.appendChild(u); s.setAttribute("aria-hidden", "true"); return s; }
+
+  /* Gerüst einer Story-Seite: Bild, Segmente, Absender, Inhalt unten */
+  function slide(imgIndex) {
+    story.textContent = "";
+    var sl = el("div", "slide fade"), im = el("img"); im.src = IMGS[imgIndex % IMGS.length]; im.alt = "";
+    sl.appendChild(im); sl.appendChild(el("div", "shade"));
+    var ui = el("div", "ui"), sg = el("div", "segs");
+    for (var i = 0; i < Q.length + 1; i++) sg.appendChild(el("i", i < step + 1 ? "on" : i === step + 1 ? "now" : ""));
+    ui.appendChild(sg);
+    var who = el("div", "who"), av = el("img"); av.src = IMGS[0]; av.alt = ""; who.appendChild(av);
+    var nm = el("div"); nm.appendChild(el("b", null, "Nick Haasmann")); nm.appendChild(el("span", null, "Live-Webinar am 6. Dezember")); who.appendChild(nm);
+    if (step > 0 && step < Q.length) { var bk = el("button", "back"); bk.type = "button"; bk.setAttribute("aria-label", "Zurück"); bk.appendChild(icon("left")); bk.addEventListener("click", function () { step--; render(); }); who.appendChild(bk); }
+    ui.appendChild(who);
+    var c = el("div", "content"); ui.appendChild(c); sl.appendChild(ui); story.appendChild(sl);
+    requestAnimationFrame(function () { sl.classList.add("in"); });
+    return c;
+  }
+
+  function render() {
+    if (step < 0) return start();
+    if (step >= Q.length) return end();
+    var q = Q[step], c = slide(step + 1), prev = answers[step];
+    c.appendChild(el("span", "tag", "Frage " + (step + 1) + " von " + Q.length));
+    var h = el("h1", null, q.t); h.id = "q"; h.tabIndex = -1; c.appendChild(h);
+    if (q.s) c.appendChild(el("p", "sub", q.s));
+    var g;
+    if (q.scale) {
+      g = el("div", "scale");
+      for (var v = 1; v <= 10; v++) (function (v) { var b = el("button", "opt" + (prev && prev.a === String(v) ? " sel" : ""), String(v)); b.type = "button"; b.setAttribute("aria-label", v + " von 10"); b.addEventListener("click", function () { choose(b, q, String(v), Math.round((v - 1) / 9 * 15)); }); g.appendChild(b); })(v);
+      c.appendChild(g); c.appendChild(el("div", "scale-bar"));
+      var l = el("div", "scale-l"); l.innerHTML = "<span><b>1</b> = kaum</span><span><b>10</b> = unbedingt</span>"; c.appendChild(l);
+    } else {
+      g = el("div", "opts");
+      q.a.forEach(function (a) { var b = el("button", "opt" + (prev && prev.a === a[0] ? " sel" : ""), a[0]); b.type = "button"; b.addEventListener("click", function () { choose(b, q, a[0], a[1]); }); g.appendChild(b); });
+      c.appendChild(g);
+    }
+    g.setAttribute("role", "group"); g.setAttribute("aria-labelledby", "q");
+    h.focus({ preventScroll: true });
+  }
+  function choose(b, q, a, pts) {
+    if (busy) return; busy = true;
+    story.querySelectorAll(".opt").forEach(function (o) { o.classList.remove("sel"); }); b.classList.add("sel");
+    answers[step] = { frage: q.id, a: a, pts: pts }; track("quiz_answer", { frage: q.id, antwort: a, schritt: step + 1 });
+    setTimeout(function () { busy = false; step++; render(); }, 320);
+  }
+  function start() {
+    var c = slide(0);
+    c.appendChild(el("span", "tag", "Fast geschafft"));
+    var h = el("h1", null, (vorname ? "Hey " + vorname + ", deine" : "Deine") + " Anmeldung ist fast fertig, es fehlen nur noch 7 kurze Fragen."); h.tabIndex = -1; c.appendChild(h);
+    c.appendChild(el("p", "sub", "Mit deinen Antworten weiß ich, wer am Sonntag dabei ist und welche Themen euch am meisten beschäftigen."));
+    var ul = el("ul", "facts");
+    ["Dauert weniger als 1 Minute", "Antworten einfach antippen", "Danach bekommst du alle Infos"].forEach(function (t) { var li = el("li"); li.appendChild(icon("ccheck")); li.appendChild(document.createTextNode(t)); ul.appendChild(li); });
+    c.appendChild(ul);
+    var b = el("button", "cta"); b.type = "button"; b.appendChild(document.createTextNode("Los geht's")); b.appendChild(icon("right"));
+    b.addEventListener("click", function () { track("quiz_start"); step = 0; render(); }); c.appendChild(b);
+  }
+  function end() {
+    var score = answers.reduce(function (s, a) { return s + (a ? a.pts : 0); }, 0), ok = score >= QUALIFIED_FROM;
+    track("quiz_complete", { lqs: score, qualifiziert: ok, antworten: answers }); if (ok) track("qualified_lead", { lqs: score });
+    var c = slide(1); c.style.alignItems = "center"; c.style.textAlign = "center";
+    c.appendChild(el("div", "spin")); c.appendChild(el("p", "sub", "Deine Antworten werden gespeichert."));
+    setTimeout(function () {
+      if (DANKE_URL && !TEST) { location.href = DANKE_URL; return; }
+      var d = slide(0); d.style.alignItems = "center"; d.style.textAlign = "center";
+      var o = el("span", "ok"); o.appendChild(icon("check")); d.appendChild(o);
+      d.appendChild(el("h1", null, (vorname ? "Danke, " + vorname + ", du bist" : "Danke, du bist") + " für Sonntag um 11 Uhr angemeldet."));
+      d.appendChild(el("p", "sub", "Hier leitet die Seite später automatisch auf die Danke-Seite weiter."));
+      var t = el("div", "test"); t.style.textAlign = "left";
+      t.innerHTML = "<b>Testansicht:</b> Lead Quality Score <b>" + score + " von 100</b>, " + (ok ? "qualifiziert" : "nicht qualifiziert") + " (Schwelle " + QUALIFIED_FROM + ").<br>" + answers.map(function (a) { return a.a + ": " + a.pts + " P."; }).join("<br>");
+      d.appendChild(t);
+    }, 900);
+  }
+  render();
+})();
+</script>
+</body>
+</html>
