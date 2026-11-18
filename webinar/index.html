@@ -275,17 +275,17 @@ footer a { color: var(--muted); text-decoration: none; margin-left: 18px; }
 .bE.on .bt .fl { transform: scaleX(1); }
 .bE .bt path { opacity: 0; transition: opacity .4s 2.3s; } .bE.on .bt path { opacity: 1; }
 @media (prefers-reduced-motion: reduce) { .bE .bt .fl { transform: none; transition: none; } .bE .bt path { opacity: 1; transition: none; } }
-@media (min-width: 1441px) { .hero-nick { -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 30%, #000 82%, transparent 100%) !important; mask-image: linear-gradient(90deg, transparent 0%, #000 30%, #000 82%, transparent 100%) !important; } }
 /* Header wie Variante D: Nick randlos rechts, Publikum als Schimmer */
 .hero-bg, .hero-nick, .hero-fade { display: none; }
 @media (min-width: 1001px) {
   section.hero { min-height: 820px; display: flex; align-items: center; padding: 72px 0 48px; }
   section.hero > .wrap { width: 100%; }
   section.hero.stage::before, section.hero.glow::after { display: none; }
+  section.hero { --edge: max(24px, calc((100% - 1200px) / 2 + 24px)); }
   .hero-bg, .hero-nick, .hero-fade { display: block; position: absolute; pointer-events: none; }
-  .hero-bg { top: 0; bottom: 0; left: 50%; width: min(100%, 1440px); transform: translateX(-50%); -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 12%, #000 88%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0, #000 12%, #000 88%, transparent 100%); z-index: -3; background: url(img/nick-buehne-publikum.jpg) 50% 60% / cover no-repeat; opacity: .28; filter: blur(3px); }
-  .hero-nick { top: 0; bottom: 0; right: max(0px, calc((100% - 1440px) / 2)); width: min(56%, 806px); z-index: -2; background: url(img/nick-buehne-headset.jpg) 50% 12% / cover no-repeat; -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 30%); mask-image: linear-gradient(90deg, transparent 0%, #000 30%); }
-  .hero-fade { top: 0; bottom: 0; left: 50%; width: min(100%, 1440px); transform: translateX(-50%); z-index: -1; background: linear-gradient(90deg, #000 0%, rgba(0,0,0,.85) 40%, transparent 62%), linear-gradient(180deg, transparent 75%, #000); }
+  .hero-bg { top: 0; bottom: 0; left: var(--edge); right: var(--edge); -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 12%, #000 88%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0, #000 12%, #000 88%, transparent 100%); z-index: -3; background: url(img/nick-buehne-publikum.jpg) 50% 60% / cover no-repeat; opacity: .28; filter: blur(3px); }
+  .hero-nick { top: 0; bottom: 0; right: var(--edge); width: min(58%, 720px); z-index: -2; background: url(img/nick-buehne-headset.jpg) 50% 12% / cover no-repeat; -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 30%, #000 86%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0%, #000 30%, #000 86%, transparent 100%); }
+  .hero-fade { top: 0; bottom: 0; left: var(--edge); right: var(--edge); z-index: -1; background: linear-gradient(90deg, #000 0%, rgba(0,0,0,.85) 40%, transparent 62%), linear-gradient(180deg, transparent 75%, #000); }
   .hero-photo { display: none; }
   .hero-text .lead { max-width: 560px; }
   .hero .cta-stack, .hero .proof { align-items: flex-start; }
