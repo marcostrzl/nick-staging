@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex">
-<title>Webinar Nick Haasmann</title>
+<title>Webinar Nick Haasmann hell</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
 <style>
-/* Layout: Landingpage im NH-Bühnen-Look (design.md), Inhalt 1200 px, Sektionen zentriert, Mobil erst Text dann Bild. */
+/* Layout: Landingpage, heller Look K3 (Stein und Weiß) über dem NH-Bühnen-Look (design.md), Inhalt 1200 px, Sektionen zentriert, Mobil erst Text dann Bild. */
 :root {
   color-scheme: dark;
   --black: #000; --s1: #111; --s2: #1F1F1F; --faq: #151414;
@@ -312,6 +312,27 @@ footer a { color: var(--muted); text-decoration: none; margin-left: 18px; }
 .qa-chips svg { width: 17px; height: 17px; color: var(--green); } .qa-chips .hot { background: rgba(255,68,51,.14); border-color: rgba(255,68,51,.5); color: var(--red); font-weight: 600; } .qa-chips .hot svg { width: 24px; height: 12px; color: var(--red); }
 @media (max-width: 1000px) { .qa-wide { grid-template-columns: minmax(0, 1fr); gap: 22px; padding: 22px; } .qa-wide .qa-vis { order: 2; } }
 @media (prefers-reduced-motion: reduce) { .qb { opacity: 1; } .qchat.on .qb { animation: none; } }
+/* PDF-Geschenk */
+/* PDF-Mockup */
+.pdf { position: relative; width: 300px; aspect-ratio: 210 / 297; background: #fbfaf7; color: #141414; border-radius: 4px; padding: 26px 24px; display: flex; flex-direction: column; box-shadow: 0 40px 80px -30px rgba(0,0,0,.9), 0 0 0 1px rgba(0,0,0,.05); font-family: var(--font); }
+.pdf-top { display: flex; justify-content: space-between; gap: 8px; font-size: 6.5px; letter-spacing: .22em; color: #777; } .pdf-top b { color: #141414; font-weight: 600; }
+.pdf-kick { margin-top: 30%; font-size: 6px; letter-spacing: .24em; color: #888; }
+.pdf-title { margin-top: 8px; font: 400 58px/1 "Instrument Serif", Georgia, serif; letter-spacing: -1px; } .pdf-title em { font-size: 22px; color: #777; }
+.pdf-sub { font: italic 400 15px/1.2 "Instrument Serif", Georgia, serif; margin-top: 8px; }
+.pdf-toc { list-style: none; margin: auto 0 0; padding: 0; border-top: 1.5px solid #141414; } .pdf-toc li { display: flex; gap: 10px; padding: 5px 0; border-bottom: 1px solid #e3e1dc; font: 400 11px/1.2 "Instrument Serif", Georgia, serif; } .pdf-toc i { font-style: normal; color: #999; width: 14px; }
+.pdf.inner .pdf-big { margin-top: 18px; font: 400 54px/1 "Instrument Serif", Georgia, serif; }
+.pdf.inner .pdf-h { font: 400 20px/1.1 "Instrument Serif", Georgia, serif; margin: 2px 0 14px; padding-bottom: 10px; border-bottom: 1.5px solid #141414; }
+.pdf-list { list-style: none; margin: 0; padding: 0; } .pdf-list li { display: grid; grid-template-columns: 16px 1fr auto; gap: 6px; align-items: baseline; padding: 7px 0; border-bottom: 1px solid #e3e1dc; } .pdf-list i { font-style: normal; color: #aaa; font: 400 10px "Instrument Serif", serif; } .pdf-list b { font: 400 11.5px/1.2 "Instrument Serif", Georgia, serif; } .pdf-list span { font-size: 6px; color: #333; }
+/* A */
+.pa { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 64px; align-items: center; }
+.pa-vis { position: relative; height: 470px; display: grid; place-items: center; }
+.pa-vis .pdf { position: absolute; } .pa-vis .pdf.back { transform: translate(34px, 18px); opacity: .55; filter: brightness(.8); }
+.pa-vis::before { content: ""; position: absolute; inset: 10% 0; background: radial-gradient(closest-side, rgba(255,68,51,.35), transparent); filter: blur(10px); }
+.pa-txt { display: flex; flex-direction: column; gap: 22px; align-items: flex-start; }
+.pills { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; } .pills li { display: inline-flex; gap: 6px; padding: 7px 12px; border-radius: 60px; background: rgba(255,255,255,.05); border: 1px solid var(--b10); font-size: 13.5px; color: #fff; } .pills i { font-style: normal; color: var(--red); font-weight: 600; }
+.cta-stack.left, .cta-stack.left .proof { align-items: flex-start; }
+@media (max-width: 1000px) { .pa { grid-template-columns: minmax(0, 1fr); gap: 32px; } .pa-vis { order: 2; height: 420px; } .pa-txt { align-items: center; text-align: center; } .pills { justify-content: center; } .cta-stack.left, .cta-stack.left .proof { align-items: center; } }
+@media (max-width: 680px) { .pa-vis { height: 380px; } .pa-vis .pdf { width: 240px; } .pa-vis .pdf.back { transform: translate(24px, 14px); } .pdf-title { font-size: 40px; } .pa-vis .pdf-kick { margin-top: 18%; } .pa-vis .pdf-sub { font-size: 13px; } }
 @media (prefers-reduced-motion: reduce) { .track, .target::before, .target::after, .live, .g5, .g5 .ci { animation: none; } html { scroll-behavior: auto; } }
 @media (max-width: 1000px) {
   .w1 { grid-template-columns: minmax(0, 1fr); }
@@ -343,6 +364,223 @@ footer a { color: var(--muted); text-decoration: none; margin-left: 18px; }
   .hero-photo { height: 360px; margin-top: 8px; -webkit-mask-image: linear-gradient(0deg, transparent 0, #000 35%); mask-image: linear-gradient(0deg, transparent 0, #000 35%); }
   footer a { margin-left: 0; margin-right: 18px; }
 }
+
+/* ==== Heller Look K3 „Stein und Weiß“, Richtung V3 (Punktraster oben, Lichtlauf) ==== */
+:root {
+  color-scheme: light;
+  --page: #F4F3F0; --surface: #FFFFFF; --line: #E2E0DB;
+  --ink: rgba(17,17,17,.93); --ink2: rgba(17,17,17,.56); --ink3: rgba(17,17,17,.30);
+  --cocoa: #4C3333; --glacier: #BAD9DA; --sand: #DDC9A4; --sand-dk: #A88A55; --blush: #F5EBE7;
+  --serif: "Instrument Serif", Georgia, serif;
+}
+body { position: relative; background: var(--page); color: var(--ink); }
+/* Punktraster nur oben im Header, hinter dem Foto */
+body::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1100px; z-index: -1; pointer-events: none; background-image: radial-gradient(rgba(17,17,17,.09) 1px, transparent 1.2px); background-size: 22px 22px; -webkit-mask-image: linear-gradient(180deg, #000 0%, rgba(0,0,0,.35) 60%, transparent 100%); mask-image: linear-gradient(180deg, #000 0%, rgba(0,0,0,.35) 60%, transparent 100%); }
+.stage::before, .glow::after { display: none; }
+.stage { isolation: auto; }
+main > section + section { border-top: 1px solid var(--line); }
+/* ruhige weiße Flächen statt Glow */
+section.s.stage.glow, section.final { background: var(--surface); }
+
+/* Typo */
+.h1, .h2 { background: none; -webkit-background-clip: border-box; background-clip: border-box; color: var(--ink); font-family: var(--serif); font-weight: 400; letter-spacing: -.01em; }
+.h1 { font-size: clamp(36px, 4.2vw, 56px); line-height: 1.04; }
+.h2 { font-size: clamp(32px, 3.4vw, 46px); line-height: 1.08; }
+.hk .lead-ink { color: var(--ink); }
+.hk .cont { color: rgba(17,17,17,.52); }
+.lead { color: var(--ink2); }
+.lead b { color: var(--ink); }
+
+/* Pillen (Badges) und Eyebrow */
+.badge { position: relative; background: var(--surface); border-color: var(--line); color: var(--ink2); font-size: 13px; padding: 7px 14px; }
+.badge svg { color: var(--cocoa); width: 14px; height: 14px; }
+.badge.hero { gap: 10px; padding: 7px 14px; background: var(--surface); border-color: var(--line); -webkit-backdrop-filter: none; backdrop-filter: none; color: var(--ink2); font-size: 13.5px; }
+.badge.hero i { width: 7px; height: 7px; border-radius: 50%; background: var(--cocoa); flex: none; }
+
+/* Button: Cocoa, Pille, Lichtlauf */
+.cta { border: 0; border-radius: 999px; min-width: 380px; height: 64px; background: var(--cocoa); color: #fff; font: 500 17px/1 var(--font); letter-spacing: -.2px; box-shadow: 0 12px 30px -10px rgba(76,51,51,.55); }
+.cta:focus-visible { outline: 2px solid var(--cocoa); }
+@property --gl { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+.cta::before, .badge::before { content: ""; position: absolute; inset: -2px; border-radius: inherit; padding: 2px; pointer-events: none; background: linear-gradient(110deg, transparent 30%, #BAD9DA 45%, #fff 50%, #DDC9A4 55%, transparent 70%) 0 0 / 250% 100%; -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; animation: sweep 3.2s ease-in-out infinite; }
+.badge::before { inset: -1px; padding: 1px; }
+.cta::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; background: linear-gradient(110deg, transparent 35%, rgba(255,255,255,.28) 50%, transparent 65%) 0 0 / 250% 100%; animation: sweep 3.2s ease-in-out infinite; }
+@keyframes sweep { 0% { background-position: 120% 0; } 60%, 100% { background-position: -120% 0; } }
+@keyframes g5 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+@media (prefers-reduced-motion: reduce) { .cta::before, .cta::after, .badge::before { animation: none; } }
+
+/* Social Proof */
+.laurel { color: var(--ink); }
+.avatars span { border-color: #fff; background-color: #ddd; }
+.proof .count { color: var(--ink); }
+.tp { color: var(--ink); } .tp span { color: var(--ink2); }
+
+/* Kopfleiste wie V3 */
+.topbar { background: linear-gradient(var(--page) 55%, rgba(244,243,240,0)); }
+.topbar .bar { background: rgba(255,255,255,.72); border: 1px solid var(--line); border-radius: 16px; -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); }
+.topbar .logo-t { font: 500 13px/1 var(--font); letter-spacing: .24em; text-transform: uppercase; color: var(--ink); white-space: nowrap; }
+.topbar .info { color: var(--ink2); } .topbar .info b { color: var(--ink); }
+.cd div { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+.cd b { background: none; -webkit-background-clip: border-box; background-clip: border-box; color: var(--ink); font-weight: 500; }
+.cd span { color: var(--ink3); }
+
+/* Hero wie V3: Text links, Bühnenfoto als Karte rechts */
+.hero-img { position: relative; }
+.hero-photo { display: block; height: auto; aspect-ratio: 4 / 5; border-radius: 28px; background: url(img/nick-buehne-headset.jpg) 52% 14% / cover no-repeat; -webkit-mask-image: none; mask-image: none; }
+.tag { position: absolute; left: -24px; bottom: 28px; padding: 12px 16px; border-radius: 16px; background: rgba(255,255,255,.82); -webkit-backdrop-filter: blur(24px) saturate(1.6); backdrop-filter: blur(24px) saturate(1.6); box-shadow: 0 6px 16px -4px rgba(0,0,0,.12); display: flex; flex-direction: column; gap: 2px; max-width: 250px; }
+.tag small { font-size: 11.5px; color: var(--ink2); } .tag b { font-size: 14px; font-weight: 500; line-height: 1.3; color: var(--ink); }
+@media (min-width: 1001px) {
+  section.hero { min-height: 0; padding: 48px 0 88px; }
+  .hero-grid { gap: 56px; }
+  .hero-photo { display: block; max-height: 620px; }
+}
+
+/* Problem */
+.pcard { background: var(--surface); border-color: var(--line); }
+.pcard .vis { background: linear-gradient(180deg, #FBFAF8, #EFEDE8); }
+.pcard h3 { color: var(--ink); }
+.pcard p { color: var(--ink2); }
+.bridge { color: var(--ink); } .bridge span { color: var(--cocoa); }
+.bub.me { background: var(--cocoa); color: #fff; }
+.bub.ai { background: #fff; color: var(--ink2); border-color: var(--line); }
+.bub.ai.x { border-color: rgba(168,138,85,.7); }
+.tb { box-shadow: 0 8px 18px -10px rgba(0,0,0,.45); }
+.notes { background: #fff; border-color: var(--line); color: var(--ink2); box-shadow: 0 20px 40px -24px rgba(0,0,0,.35); }
+.notes b { color: var(--ink); } .notes s { color: var(--ink3); }
+
+/* Upgrade Protocol */
+.up { position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; max-width: 900px; margin: 0 auto; }
+.up::before { content: ""; position: absolute; left: 25%; right: 25%; top: 15px; height: 2px; background: linear-gradient(90deg, var(--ink3), var(--cocoa)); }
+.up-st { position: relative; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.up-dot { width: 32px; height: 32px; flex: none; border-radius: 50%; display: grid; place-items: center; background: var(--surface); border: 2px solid var(--ink3); color: var(--ink2); font: 600 13px/1 var(--font); }
+.up-st:nth-child(2) .up-dot { background: var(--cocoa); border-color: var(--cocoa); color: #fff; }
+.up-st .up-card { width: 100%; flex: 1; }
+.up-card { padding: 28px; border-radius: 20px; background: var(--surface); border: 1px solid var(--line); display: flex; flex-direction: column; gap: 10px; }
+.up-card small { font-size: 12.5px; color: var(--ink2); }
+.up-card b { font: 400 28px/1.15 var(--serif); color: var(--ink); }
+.up-card ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; color: var(--ink2); font-size: 15px; }
+.up-card.next { border-color: rgba(76,51,51,.35); box-shadow: 0 12px 32px -14px rgba(76,51,51,.35); }
+.up-card.next b { color: var(--cocoa); }
+
+/* Lernpunkte */
+.lcard { background: var(--page); border-color: var(--line); }
+.lvis { background: #fff; border: 1px solid var(--line); }
+.lcard .no, .qa-wide .no { color: var(--cocoa); }
+.lcard h3, .qa-wide h3 { color: var(--ink); }
+.lcard p, .qa-wide p { color: var(--ink2); }
+.gauge-n { color: var(--ink); }
+.trio span { border-color: #fff; }
+.target { background: radial-gradient(circle, rgba(76,51,51,.95) 0 30%, transparent 31% 42%, rgba(76,51,51,.35) 43% 55%, transparent 56% 68%, rgba(186,217,218,.7) 69% 80%, transparent 81%); }
+.target::before, .target::after { border-color: rgba(76,51,51,.45); }
+.target b { color: #fff; font-size: 13px; }
+.start { display: flex; flex-direction: column; align-items: center; gap: 6px; font: 500 15px/1 var(--font); color: var(--ink3); }
+.start b { padding: 9px 11px; border-radius: 10px; background: var(--cocoa); color: #fff; font-weight: 600; }
+.start svg { width: 22px; height: 14px; color: var(--sand-dk); transform: rotate(90deg); }
+.qa-wide { background: var(--page); border-color: rgba(76,51,51,.25); box-shadow: 0 16px 40px -24px rgba(76,51,51,.35); }
+.qb { background: #fff; border-color: var(--line); color: var(--ink); }
+.qb.nick { background: var(--blush); border-color: rgba(76,51,51,.25); }
+.qa-chip { background: var(--blush); color: var(--cocoa); }
+
+/* PDF-Geschenk */
+.pa-vis::before { background: radial-gradient(closest-side, rgba(221,201,164,.55), transparent); }
+.pdf { background: #fff; box-shadow: 0 30px 60px -28px rgba(0,0,0,.35), 0 0 0 1px var(--line); }
+.pa-vis .pdf.back { opacity: .7; filter: none; }
+.pills li { background: var(--surface); border-color: var(--line); color: var(--ink); }
+.pills i { color: var(--cocoa); }
+
+/* Weg mit Akku */
+.ul li { color: rgba(17,17,17,.78); }
+.w1 .col h3 { color: var(--ink); }
+.w1 .col:nth-child(1) { --bc: rgba(17,17,17,.38); background: var(--surface); border-color: var(--line); }
+.w1 .col:nth-child(2) { --bc: var(--sand-dk); background: var(--surface); border-color: rgba(168,138,85,.35); }
+.w1 .col:nth-child(3) { --bc: var(--cocoa); background: var(--blush); border-color: rgba(76,51,51,.35); box-shadow: 0 16px 40px -20px rgba(76,51,51,.45); }
+.c-red svg { color: rgba(17,17,17,.38); } .c-gold svg { color: var(--sand-dk); } .c-green svg { color: var(--cocoa); }
+.c-green svg path { stroke: #fff; }
+.w1 .col:nth-child(3) .bt .fl { filter: none; }
+.w1 .col:nth-child(3) .bt path { fill: #fff; }
+
+/* Kundenstimmen */
+.hpc { background: var(--page); border-color: var(--line); }
+.hpc-ph::after { background: linear-gradient(0deg, var(--page) 0%, rgba(244,243,240,0) 35%); }
+.hpc-who { border-bottom-color: var(--line); }
+.hpc-who b { color: var(--ink); } .hpc-who span { color: var(--ink2); }
+.hpc .q { color: var(--cocoa); }
+.hpc .t { color: var(--ink); }
+.hpc p { color: var(--ink2); }
+.ver { color: var(--ink2); }
+
+/* Rückzug */
+.video { border-color: var(--line); box-shadow: 0 30px 70px -34px rgba(76,51,51,.55); }
+.play { background: var(--cocoa); box-shadow: 0 0 0 10px rgba(255,255,255,.25), 0 10px 30px rgba(0,0,0,.3); }
+.video .cap { color: #fff; }
+.letter-text p { color: var(--ink2); } .letter-text p b { color: var(--ink); }
+.sign { color: var(--ink2); }
+
+/* Über Nick */
+.about-text p { color: var(--ink2); } .about-text p b { color: var(--ink); }
+.fact { background: var(--surface); border-color: var(--line); }
+.fact b { color: var(--ink); font: 400 30px/1.05 var(--serif); letter-spacing: 0; }
+.fact span { color: var(--ink2); }
+.about-photo::after { background: linear-gradient(0deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,0) 40%); }
+.biz { background: rgba(255,255,255,.82); border-color: rgba(255,255,255,.6); }
+.biz svg { color: var(--ink); } .biz b { color: var(--ink); } .biz span { color: var(--ink2); }
+
+/* FAQ */
+.faq details { background: var(--surface); border-color: var(--line); }
+.faq summary { color: var(--ink); }
+.faq summary::after { color: var(--cocoa); }
+.faq details[open] { background: var(--surface); border-color: rgba(76,51,51,.25); }
+.faq p { color: var(--ink2); }
+
+/* Schluss */
+.final .cd.big div { background: var(--page); }
+.qa-chips span { background: var(--page); border-color: var(--line); color: var(--ink); }
+.qa-chips svg { color: var(--cocoa); } .qa-chips svg path { stroke: #fff; }
+.qa-chips .hot { background: var(--blush); border-color: rgba(76,51,51,.3); color: var(--cocoa); }
+.qa-chips .hot svg { color: var(--cocoa); } .qa-chips .hot svg path { stroke: currentColor; }
+
+footer { border-top-color: var(--line); color: var(--ink2); }
+footer a { color: var(--ink2); }
+
+/* Sticky-Button */
+.sticky { background: rgba(255,255,255,.92); border-color: var(--line); box-shadow: 0 20px 50px -14px rgba(0,0,0,.28); }
+.sticky .cta { height: 54px; }
+.seats-top { color: var(--ink2); } .seats-top span { color: var(--ink); } .seats-top b { color: var(--cocoa); }
+.live { background: var(--cocoa); animation-name: live2; }
+@keyframes live2 { 0% { box-shadow: 0 0 0 0 rgba(76,51,51,.6); } 70% { box-shadow: 0 0 0 7px rgba(76,51,51,0); } 100% { box-shadow: 0 0 0 0 rgba(76,51,51,0); } }
+.seats-bar { background: rgba(76,51,51,.14); } .seats-bar i { background: var(--cocoa); }
+
+/* Formular */
+.modal { background: rgba(30,22,22,.45); }
+.sheet { background: var(--surface); border-color: var(--line); box-shadow: 0 40px 100px -30px rgba(0,0,0,.35); }
+.sheet h2 { color: var(--ink); font: 400 32px/1.08 var(--serif); letter-spacing: -.01em; }
+.sheet .sub { color: var(--ink2); }
+.sheet label { color: var(--ink2); }
+.sheet input { background: var(--page); border-color: var(--line); color: var(--ink); }
+.sheet input:focus { outline-color: var(--cocoa); }
+.sheet .fine { color: var(--ink2); }
+.close { background: var(--page); border-color: var(--line); color: var(--ink); }
+.done a { color: var(--cocoa); }
+
+.fc-in .h2 { max-width: 24ch; }
+@media (max-width: 1000px) {
+  .hero-photo { height: auto; max-height: 460px; aspect-ratio: 4 / 5; -webkit-mask-image: none; mask-image: none; }
+  .hero-img { width: 100%; max-width: 420px; margin: 8px auto 40px; }
+  .tag { left: 12px; }
+  .up { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .up::before { left: 15px; right: auto; top: 16px; bottom: 16px; width: 2px; height: auto; background: linear-gradient(180deg, var(--ink3), var(--cocoa)); }
+  .up-st { flex-direction: row; align-items: flex-start; gap: 12px; }
+  .about-photo::after { background: linear-gradient(0deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,0) 40%); }
+}
+@media (max-width: 680px) {
+  .h1, .h2 { letter-spacing: -.01em; }
+  .h1 { font-size: 36px; } .h2 { font-size: 32px; }
+  .cta { min-width: 0; height: 58px; }
+  .hero-photo { height: auto; max-height: none; aspect-ratio: 4 / 4.4; margin-top: 0; }
+  .topbar .logo-t { font-size: 11px; letter-spacing: .16em; white-space: normal; line-height: 1.25; }
+  .cd { gap: 3px; } .cd div { width: 50px; } .cd span { font-size: 8.5px; }
+  .badge.hero { font-size: 11.5px; padding: 6px 10px; gap: 7px; white-space: nowrap; }
+  .up-card { padding: 22px; } .up-card b { font-size: 25px; }
+}
 </style>
 </head>
 <body>
@@ -359,33 +597,33 @@ footer a { color: var(--muted); text-decoration: none; margin-left: 18px; }
   <symbol id="play" viewBox="0 0 24 24"><path fill="#fff" d="M6 4l14 8-14 8z"/></symbol>
   <symbol id="laurel" viewBox="0 0 19 25"><g fill="currentColor"><path d="M15 24c-5.5-1.6-9.4-6-10-12.2.4 0 .9 0 1.3.1.7 5.6 4.2 9.6 9 11.2z"/><ellipse cx="4" cy="17.5" rx="1.6" ry="3" transform="rotate(-38 4 17.5)"/><ellipse cx="2.8" cy="12.4" rx="1.4" ry="2.8" transform="rotate(-10 2.8 12.4)"/><ellipse cx="3.4" cy="7.4" rx="1.3" ry="2.6" transform="rotate(18 3.4 7.4)"/><ellipse cx="5.6" cy="3.2" rx="1.2" ry="2.3" transform="rotate(42 5.6 3.2)"/><ellipse cx="8.8" cy="21.4" rx="1.4" ry="2.8" transform="rotate(-62 8.8 21.4)"/></g></symbol>
   <symbol id="sig" viewBox="0 0 54 40"><path d="M4 30c6-3 9-12 10-20 .5-4-1.5-5-2.5-1.5-1.8 6.6-1.2 16 .5 24 3-8 6.6-14 9.6-15.5-.7 4.5-1 9 .4 12.5 2.6-5.6 5.8-9.5 9.1-10.6-1.2 3.6-1.4 6.8-.2 9 3.4-.5 9-2.8 14-6.7M8 35c11-1.2 25-1.8 40-1" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></symbol>
-</defs></svg>
+<symbol id="gift" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="9" width="18" height="12" rx="1.5"/><path d="M3 13h18M12 9v12M12 9c-1.5-3.5-6-4-6-1.5S9 9 12 9zm0 0c1.5-3.5 6-4 6-1.5S15 9 12 9z"/></g></symbol></defs></svg>
 
 <template id="proof-tpl">
   <div class="proof">
     <div class="row"><svg class="laurel"><use href="#laurel"/></svg><div class="avatars"><span style="background-image:url(img/testimonial-kian-hoss.jpg)"></span><span style="background-image:url(img/testimonial-larry-liu.jpg)"></span><span style="background-image:url(img/testimonial-roman-dorn.jpg)"></span><span style="background-image:url(img/testimonial-pedram-parsaian.jpg)"></span><span style="background-image:url(img/testimonial-conny-wilczynski.jpg)"></span></div><svg class="laurel" style="transform:scaleX(-1)"><use href="#laurel"/></svg></div>
-    <span class="count">1.000+ erfolgreiche Transformationen</span>
+    <span class="count">1.500+ erfolgreiche Transformationen</span>
     <div class="tp"><div class="stars"><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg></div>4.8 <span>Sterne auf Trustpilot</span></div>
   </div>
 </template>
 
 <!-- 1 Kopfleiste -->
 <div class="topbar"><div class="wrap"><div class="bar">
-  <svg class="logo" aria-label="Nick Haasmann"><use href="#logo"/></svg>
+  <b class="logo-t">Nick Haasmann</b>
   <div class="info"><span><b>Sonntag, 6. Dezember</b> 11:00 Uhr</span><span><b>Live</b> über Zoom</span></div>
   <div class="cd" data-countdown="2026-12-06T11:00:00+01:00" aria-label="Zeit bis zum Webinar"><div><b data-u="d">00</b><span>Tage</span></div><div><b data-u="h">00</b><span>Stunden</span></div><div><b data-u="m">00</b><span>Minuten</span></div><div><b data-u="s">00</b><span>Sekunden</span></div></div>
 </div></div></div>
 
 <main>
 <!-- 2 Hero -->
-<section class="hero stage glow"><div class="hero-bg" aria-hidden="true"></div><div class="hero-nick" role="img" aria-label="Nick Haasmann auf der Bühne"></div><div class="hero-fade" aria-hidden="true"></div><div class="wrap hero-grid">
+<section class="hero"><div class="wrap hero-grid">
   <div class="hero-text">
-    <span class="badge hero"><svg><use href="#logo"/></svg>Kostenloses Live-Webinar · Zum letzten Mal öffentlich</span>
-    <h1 class="h1">Am 6. Dezember zeige ich dir zum letzten Mal öffentlich das System, mit dem ich RAF Camora und Kian Hoss in Topform gebracht habe.</h1>
+    <span class="badge hero"><i></i>Kostenloses Live-Webinar · Zum letzten Mal öffentlich</span>
+    <h1 class="h1 hk"><span class="lead-ink">Am 6. Dezember zeige ich dir zum letzten Mal öffentlich das System,</span> <span class="cont">mit dem ich Philip Hopf und RAF Camora in Topform gebracht habe.</span></h1>
     <p class="lead">Danach ziehe ich mich aus der Öffentlichkeit zurück. Sei am <b>Sonntag um 11 Uhr</b> live dabei und erfahre, worauf es für deinen Körper und deinen Kopf wirklich ankommt.</p>
     <div class="cta-stack"><button class="cta g5" type="button" data-open>Jetzt kostenloses Ticket sichern<svg class="ci" aria-hidden="true"><use href="#ticket"/></svg></button><div data-proof></div></div>
   </div>
-  <div class="hero-photo" role="img" aria-label="Nick Haasmann auf der Bühne"></div>
+  <div class="hero-img"><div class="hero-photo" role="img" aria-label="Nick Haasmann auf der Bühne"></div><div class="tag"><small>Nick Haasmann</small><b>13 Jahre, mehr als 1.500 Menschen begleitet</b></div></div>
 </div></section>
 
 <!-- 3 Problem -->
@@ -413,18 +651,21 @@ footer a { color: var(--muted); text-decoration: none; margin-left: 18px; }
     <p class="lead">An einem Sonntagvormittag bekommst du den Überblick,<br class="br-d"> der dir bisher gefehlt hat.</p>
   </div>
   <div class="learn">
-    <article class="lcard"><div class="lvis"><svg class="gauge" viewBox="0 0 104 60" aria-hidden="true"><path d="M8 54a44 44 0 0188 0" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="9" stroke-linecap="round"/><path d="M8 54a44 44 0 0162-40" fill="none" stroke="url(#gg)" stroke-width="9" stroke-linecap="round"/><defs><linearGradient id="gg"><stop offset="0" stop-color="#FF4433"/><stop offset="1" stop-color="#C5B532"/></linearGradient></defs></svg><span class="gauge-n">62</span></div>
+    <article class="lcard"><div class="lvis"><svg class="gauge" viewBox="0 0 104 60" aria-hidden="true"><path d="M8 54a44 44 0 0188 0" fill="none" stroke="rgba(17,17,17,.08)" stroke-width="9" stroke-linecap="round"/><path d="M8 54a44 44 0 0162-40" fill="none" stroke="url(#gg)" stroke-width="9" stroke-linecap="round"/><defs><linearGradient id="gg"><stop offset="0" stop-color="#4C3333"/><stop offset="1" stop-color="#DDC9A4"/></linearGradient></defs></svg><span class="gauge-n">62</span></div>
       <div><span class="no">01</span><h3>Wo du wirklich stehst</h3><p>Warum dein Gefühl dich oft täuscht und wie du deinen Stand in Zahlen siehst.</p></div></article>
-    <article class="lcard"><div class="lvis"><div class="dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i></div></div>
-      <div><span class="no">02</span><h3>Warum 3 Gewohnheiten mehr<br class="br-d"> bringen als 30</h3><p>Der Fehler, den fast alle machen, wenn sie zu viel auf einmal ändern wollen.</p></div></article>
+    <article class="lcard"><div class="lvis"><div class="target" aria-hidden="true"><b>Ziel</b></div></div>
+      <div><span class="no">02</span><h3>Wo du hinwillst</h3><p>Warum Klarheit über dein Ziel mehr bringt als jede neue Information.</p></div></article>
     <article class="lcard"><div class="lvis"><div class="trio" aria-hidden="true"><span style="background-image:url(img/testimonial-raf-camora.jpg)"></span><span style="background-image:url(img/testimonial-kian-hoss.jpg)"></span><span style="background-image:url(img/testimonial-larry-liu.jpg)"></span></div></div>
-      <div><span class="no">03</span><h3>Was die Elite anders macht</h3><p>Wie Menschen wie RAF Camora und Kian Hoss trotz vollem Kalender in Form bleiben.</p></div></article>
-    <article class="lcard"><div class="lvis"><div class="target" aria-hidden="true"><b>2027</b></div></div>
-      <div><span class="no">04</span><h3>Dein Ziel für 2027</h3><p>Wie aus einem vagen Wunsch ein klares Ziel wird, an dem du dranbleibst.</p></div></article>
+      <div><span class="no">03</span><h3>Was die Elite anders macht</h3><p>Wie Menschen an der Spitze trotz vollem Kalender in Form bleiben.</p></div></article>
+    <article class="lcard"><div class="lvis"><div class="start" aria-hidden="true">2026<svg viewBox="0 0 22 14"><path d="M1 7h18M14 2l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><b>2027</b></div></div>
+      <div><span class="no">04</span><h3>Dein Start in 2027</h3><p>Warum du schon 2026 anfängst und mit Klarheit ins neue Jahr gehst.</p></div></article>
     <article class="qa-wide"><div class="qa-vis"><div class="qchat"><div class="qb" style="--i:0"><span class="qa-av ini" style="background:#3b5bdb">M</span><span>Wie viel Cardio brauche ich wirklich?</span></div><div class="qb" style="--i:1"><span class="qa-av ini" style="background:#2b8a3e">S</span><span>Was mache ich bei Schichtarbeit?</span></div><div class="qb" style="--i:2"><span class="qa-av ini" style="background:#9c36b5">T</span><span>Ab welchem Alter lohnt sich ein Bluttest?</span></div><div class="qb nick" style="--i:3"><span class="qa-av" style="background-image:url(img/nick-buehne-headset.jpg)"></span><span>Gute Frage, das schauen wir uns jetzt gemeinsam an.</span></div></div></div><div><span class="no">Zum Schluss</span><h3>Am Ende nehme ich mir Zeit für jede deiner Fragen.</h3><p>Nach den 4 Themen gibt es eine offene Fragerunde ohne festes Ende. Ich bleibe so lange, bis jede Frage beantwortet ist.</p><span class="qa-chip"><svg viewBox="0 0 32 16"><path d="M8 3C4.7 3 2.5 5.4 2.5 8s2.2 5 5.5 5c4.5 0 11.5-10 16-10 3.3 0 5.5 2.4 5.5 5s-2.2 5-5.5 5c-4.5 0-11.5-10-16-10z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>Open End</span></div></article>
   </div>
   <div class="cta-block"><button class="cta g5" type="button" data-open>Jetzt kostenloses Ticket sichern<svg class="ci" aria-hidden="true"><use href="#ticket"/></svg></button><div data-proof></div></div>
 </div></section>
+
+<!-- 4b PDF-Geschenk -->
+<section class="s"><div class="wrap pa"><div class="pa-vis" aria-hidden="true"><div class="pdf back"><div class="pdf-top"><b>NICK HAASMANN</b><span>PERFORMANCE FOUNDATION</span></div><div class="pdf-kick">5 BEREICHE · 25 HEBEL</div><div class="pdf-title">Baseline <em>N° 01</em></div><div class="pdf-sub">Umsetzung schlägt Wissen.</div><ol class="pdf-toc"><li><i>01</i>Schlaf & Erholung</li><li><i>02</i>Ernährung & Supplements</li><li><i>03</i>Training & Bewegung</li><li><i>04</i>Lifestyle & Umwelt</li><li><i>05</i>Mindset & mentale Performance</li></ol></div><div class="pdf "><div class="pdf-top"><b>NICK HAASMANN</b><span>PERFORMANCE FOUNDATION</span></div><div class="pdf-kick">5 BEREICHE · 25 HEBEL</div><div class="pdf-title">Baseline <em>N° 01</em></div><div class="pdf-sub">Umsetzung schlägt Wissen.</div><ol class="pdf-toc"><li><i>01</i>Schlaf & Erholung</li><li><i>02</i>Ernährung & Supplements</li><li><i>03</i>Training & Bewegung</li><li><i>04</i>Lifestyle & Umwelt</li><li><i>05</i>Mindset & mentale Performance</li></ol></div></div><div class="pa-txt"><span class="badge"><svg><use href="#gift"/></svg>Dein Geschenk zur Anmeldung</span><h2 class="h2">Zu deiner Anmeldung bekommst du mein PDF mit 25 Hebeln für mehr Energie und Fokus.</h2><p class="lead">5 Bereiche, je 5 Hebel, die du sofort umsetzen kannst. Du bekommst es direkt nach der Anmeldung über WhatsApp.</p><ul class="pills"><li><i>01</i>Schlaf & Erholung</li><li><i>02</i>Ernährung & Supplements</li><li><i>03</i>Training & Bewegung</li><li><i>04</i>Lifestyle & Umwelt</li><li><i>05</i>Mindset & mentale Performance</li></ul><div class="cta-stack left"><button class="cta g5" type="button" data-open>Jetzt kostenloses Ticket sichern<svg class="ci" aria-hidden="true"><use href="#ticket"/></svg></button><div data-proof></div></div></div></div></section>
 
 <!-- 5 Weg -->
 <section class="s"><div class="wrap">
@@ -444,10 +685,10 @@ footer a { color: var(--muted); text-decoration: none; margin-left: 18px; }
   </div>
   <div class="tgrid">
     <article class="hpc"><div class="hpc-ph" role="img" aria-label="RAF Camora" style="background-image:url(img/testimonial-raf-camora.jpg)"></div><div class="hpc-tx"><div class="hpc-who"><b>RAF Camora</b><span>Meistgestreamter Musiker DACH</span></div><svg class="q"><use href="#quote"/></svg><span class="t">Alles davor war Hollywood-Training!</span><p>Ich habe mich direkt am Anfang des Trainings so verbessert, dass alles, was ich davor gemacht habe, um es mit Nicks Worten zu sagen, Hollywood-Training war.</p><span class="ver"><svg><use href="#ver"/></svg>Verifizierter Kunde</span></div></article>
-    <article class="hpc"><div class="hpc-ph" role="img" aria-label="Kian Hoss" style="background-image:url(img/testimonial-kian-hoss.jpg)"></div><div class="hpc-tx"><div class="hpc-who"><b>Kian Hoss</b><span>#1 Crypto &amp; Finanzexperte &amp; #1 Podcast DACH</span></div><svg class="q"><use href="#quote"/></svg><span class="t">Tiefes Verständnis über Gesundheit aufgebaut!</span><p>Nick hat mir dabei geholfen, ein tiefes Verständnis für meine Gesundheit aufzubauen. Das Resultat draus ist qualitativer Schlaf, Stressresilienz und besseres Energiemanagement.</p><span class="ver"><svg><use href="#ver"/></svg>Verifizierter Kunde</span></div></article>
+    <article class="hpc"><div class="hpc-ph" role="img" aria-label="Philip Hopf" style="background-image:url(img/testimonial-philip-hopf.jpg);background-position:50% 12%"></div><div class="hpc-tx"><div class="hpc-who"><b>Philip Hopf</b><span>#1 Podcast DACH</span></div><svg class="q"><use href="#quote"/></svg><span class="t">[Platzhalter] Zitat folgt</span><p>Hier steht bald die Stimme von Philip Hopf. Der Text wird noch mit Philip abgestimmt.</p><span class="ver"><svg><use href="#ver"/></svg>Verifizierter Kunde</span></div></article>
     <article class="hpc"><div class="hpc-ph" role="img" aria-label="Larry Liu" style="background-image:url(img/testimonial-larry-liu.jpg)"></div><div class="hpc-tx"><div class="hpc-who"><b>Larry Liu</b><span>CEO 4KEYS | FORBES 30 Under 30</span></div><svg class="q"><use href="#quote"/></svg><span class="t">16 Kilo verloren &amp; Muskeln aufgebaut!</span><p>Ich habe aktuell 16 Kilo verloren, sichtbar Muskeln aufgebaut und ich glaube, ich würde mich wirklich trauen zu sagen, ich bin aktuell in der besten Form, in der ich je in meinem Leben war!</p><span class="ver"><svg><use href="#ver"/></svg>Verifizierter Kunde</span></div></article>
     <article class="hpc"><div class="hpc-ph" role="img" aria-label="Conny Wilczynski" style="background-image:url(img/testimonial-conny-wilczynski.jpg)"></div><div class="hpc-tx"><div class="hpc-who"><b>Conny Wilczynski</b><span>CEO Sportbox &amp; CEO Padelzone</span></div><svg class="q"><use href="#quote"/></svg><span class="t">12 Kilo in 12 Wochen verloren!</span><p>Seit der Zusammenarbeit wache ich in der Früh auf und bin immer fit. Ich brauche keinen Wecker mehr, habe ein ganz anderes Energielevel und meine Kraft ist wieder zurückgekommen.</p><span class="ver"><svg><use href="#ver"/></svg>Verifizierter Kunde</span></div></article>
-    <article class="hpc"><div class="hpc-ph" role="img" aria-label="Roman Dorn" style="background-image:url(img/testimonial-roman-dorn.jpg)"></div><div class="hpc-tx"><div class="hpc-who"><b>Roman Dorn</b><span>CEO &amp; Founder Heritage Holding Austria</span></div><svg class="q"><use href="#quote"/></svg><span class="t">Mehr Ruhe, mehr Energie und besserer Schlaf!</span><p>Durch den Sport und die Umstellung der Ernährungsgewohnheiten und des ganzen Lifestyles habe ich viel mehr Ruhe bekommen, viel mehr Energie, ich schlafe einfach besser.</p><span class="ver"><svg><use href="#ver"/></svg>Verifizierter Kunde</span></div></article>
+    <article class="hpc"><div class="hpc-ph" role="img" aria-label="Kian Hoss" style="background-image:url(img/testimonial-kian-hoss.jpg)"></div><div class="hpc-tx"><div class="hpc-who"><b>Kian Hoss</b><span>#1 Crypto &amp; Finanzexperte</span></div><svg class="q"><use href="#quote"/></svg><span class="t">Tiefes Verständnis über Gesundheit aufgebaut!</span><p>Nick hat mir dabei geholfen, ein tiefes Verständnis für meine Gesundheit aufzubauen. Das Resultat draus ist qualitativer Schlaf, Stressresilienz und besseres Energiemanagement.</p><span class="ver"><svg><use href="#ver"/></svg>Verifizierter Kunde</span></div></article>
     <article class="hpc"><div class="hpc-ph" role="img" aria-label="Pedram Parsaian" style="background-image:url(img/testimonial-pedram-parsaian.jpg)"></div><div class="hpc-tx"><div class="hpc-who"><b>Pedram Parsaian</b><span>CEO FOLLOW Austria</span></div><svg class="q"><use href="#quote"/></svg><span class="t">Habe das Ziel erreicht, das ich 10 Jahre im Kopf hatte!</span><p>Wenn du deine größten Fitnessziele erreichst, fühlst du dich grundlegend anders. Im Business habe ich ein stärkeres Auftreten und mehr Energie untertags.</p><span class="ver"><svg><use href="#ver"/></svg>Verifizierter Kunde</span></div></article>
   </div>
   <div class="cta-block"><button class="cta g5" type="button" data-open>Jetzt kostenloses Ticket sichern<svg class="ci" aria-hidden="true"><use href="#ticket"/></svg></button><div data-proof></div></div>
@@ -469,7 +710,7 @@ footer a { color: var(--muted); text-decoration: none; margin-left: 18px; }
 <!-- 8 Rückzug -->
 <section class="s stage glow"><div class="wrap">
   <div class="head">
-    <span class="badge"><svg><use href="#play"/></svg>Eine persönliche Nachricht</span>
+    <span class="badge"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M6 4l14 8-14 8z"/></svg>Eine persönliche Nachricht</span>
     <h2 class="h2">Warum ich mein Wissen zum letzten Mal öffentlich teile</h2>
   </div>
   <div class="letter">
@@ -494,6 +735,18 @@ footer a { color: var(--muted); text-decoration: none; margin-left: 18px; }
     <div class="cta-stack"><button class="cta g5" type="button" data-open>Jetzt kostenloses Ticket sichern<svg class="ci" aria-hidden="true"><use href="#ticket"/></svg></button><div data-proof></div></div>
   </div>
   <div class="about-photo"><div class="biz"><svg><use href="#sig"/></svg><div><b>Nick Haasmann</b><span>CEO NH Consulting / NH Training Club</span></div></div></div>
+</div></section>
+
+<!-- 3b Upgrade Protocol -->
+<section class="s"><div class="wrap">
+  <div class="head">
+    <span class="badge"><svg><use href="#bolt"/></svg>Du warst beim Upgrade Protocol dabei?</span>
+    <h2 class="h2">Dann kennst du die Grundlagen schon, und im Webinar zeige ich dir, wie es weitergeht.</h2>
+  </div>
+  <div class="up">
+    <div class="up-st"><span class="up-dot">1</span><div class="up-card"><small>Upgrade Protocol · 2025</small><b>Du hast die Grundlagen gelernt.</b><ul><li>Die 5 Säulen in 5 Wochen</li><li>Lektionen zum Selbstlernen</li><li>Live-Masterclasses mit Nick</li></ul></div></div>
+    <div class="up-st"><span class="up-dot">2</span><div class="up-card next"><small>Webinar · 6. Dezember, 11 Uhr</small><b>Jetzt gehen wir einen Schritt weiter.</b><ul><li>Dein Stand in Zahlen statt nach Gefühl</li><li>Ein klares Ziel für 2027</li><li>Was die Elite trotz vollem Kalender anders macht</li><li>Offene Fragerunde ohne festes Ende</li></ul></div></div>
+  </div>
 </div></section>
 
 <!-- 10 FAQ -->
@@ -526,16 +779,14 @@ footer a { color: var(--muted); text-decoration: none; margin-left: 18px; }
     <button class="close" type="button" id="m-close" aria-label="Schließen">×</button>
     <form id="m-form" novalidate>
       <div style="display:flex;flex-direction:column;gap:14px">
-        <h2 id="m-title">Sichere dir deinen kostenlosen Platz</h2>
+        <h2 id="m-title">Sichere dir deinen<br> kostenlosen Platz</h2>
         <p class="sub">Sonntag, 6. Dezember 2026, 11 Uhr, live über Zoom</p>
         <label for="f-name">Vorname<input id="f-name" name="vorname" autocomplete="given-name" required></label>
         <label for="f-mail">E-Mail-Adresse<input id="f-mail" name="email" type="email" autocomplete="email" required></label>
-        <label for="f-tel">Handynummer für die WhatsApp-Erinnerung<input id="f-tel" name="telefon" type="tel" autocomplete="tel" placeholder="+43 …"></label>
         <button class="cta" type="submit">Jetzt kostenloses Ticket sichern<svg class="ci" aria-hidden="true"><use href="#ticket"/></svg></button>
-        <p class="fine">Du bekommst Infos zum Webinar per Mail und WhatsApp. Du kannst dich jederzeit abmelden.</p>
+        <div data-proof></div>
       </div>
     </form>
-    <div class="done" id="m-done" hidden><h2>Danke, du bist angemeldet</h2><p class="sub">Im echten Ablauf geht es jetzt direkt zur Danke-Seite.</p><a href="https://claude.ai/artifact/WBDqYCV4GcbbPAPf3pYcHv" target="_blank" rel="noopener">Danke-Seite ansehen</a></div>
   </div>
 </div>
 
@@ -564,8 +815,8 @@ footer a { color: var(--muted); text-decoration: none; margin-left: 18px; }
     sticky.classList.toggle("on", show); sticky.setAttribute("aria-hidden", show ? "false" : "true");
   }
   window.addEventListener("scroll", stickyCheck, { passive: true }); stickyCheck();
-  var modal = document.getElementById("modal"), form = document.getElementById("m-form"), done = document.getElementById("m-done");
-  function open() { modal.hidden = false; sticky.classList.remove("on"); form.hidden = false; done.hidden = true; setTimeout(function () { document.getElementById("f-name").focus(); }, 30); }
+  var modal = document.getElementById("modal"), form = document.getElementById("m-form");
+  function open() { modal.hidden = false; sticky.classList.remove("on"); form.hidden = false; setTimeout(function () { document.getElementById("f-name").focus(); }, 30); }
   function close() { modal.hidden = true; stickyCheck(); }
   document.querySelectorAll("[data-open]").forEach(function (b) { b.addEventListener("click", open); });
   document.getElementById("m-close").addEventListener("click", close);
@@ -576,7 +827,8 @@ footer a { color: var(--muted); text-decoration: none; margin-left: 18px; }
     var n = document.getElementById("f-name"), m = document.getElementById("f-mail");
     if (!n.value.trim()) { n.focus(); return; }
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(m.value.trim())) { m.focus(); return; }
-    form.reset(); form.hidden = true; done.hidden = false;
+    try { sessionStorage.setItem("nh-lead", JSON.stringify({ vorname: n.value.trim().slice(0, 40) })); } catch (err) {}
+    location.href = "../quiz-kacheln/";
   });
 })();
 </script>

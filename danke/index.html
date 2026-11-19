@@ -9,11 +9,11 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
 <style>
 /* Layout: 5 Varianten untereinander, jede in einem Rahmen mit Kurzbeschreibung. Look aus design.md (NH-Bühne). */
 :root {
-  color-scheme: dark;
+  color-scheme: light;
   --bg: #000; --panel: #0d0d0d; --surface: #111; --surface-2: #1f1f1f;
   --line: rgba(255,255,255,.08); --line-2: rgba(255,255,255,.15);
   --fg: #fff; --text: rgba(255,255,255,.64); --meta: #b2b2b2; --muted: rgba(255,255,255,.45);
@@ -177,6 +177,35 @@ section.offen b { color: var(--fg); }
   .in { padding: 40px 18px 44px; }
   .split, .ticket.wide { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* ==== Heller Look K3 „Stein und Weiß“ wie die Webinar-Seite ==== */
+:root { color-scheme: light; --page: #F4F3F0; --surface: #FFFFFF; --line: #E2E0DB; --ink: rgba(17,17,17,.93); --ink2: rgba(17,17,17,.56); --ink3: rgba(17,17,17,.30); --cocoa: #4C3333; --glacier: #BAD9DA; --sand: #DDC9A4; --sand-dk: #A88A55; --blush: #F5EBE7; --serif: "Instrument Serif", Georgia, serif; }
+body { background: var(--page); color: var(--ink); }
+.dots-top { position: absolute; left: 0; right: 0; top: 0; height: 700px; z-index: 0; pointer-events: none; background-image: radial-gradient(rgba(17,17,17,.09) 1px, transparent 1.2px); background-size: 22px 22px; -webkit-mask-image: linear-gradient(180deg, #000, transparent); mask-image: linear-gradient(180deg, #000, transparent); }
+.cta { position: relative; border: 0; border-radius: 999px; background: var(--cocoa); color: #fff; font-weight: 500; box-shadow: 0 12px 30px -10px rgba(76,51,51,.55); }
+.cta::before { content: ""; position: absolute; inset: -2px; border-radius: inherit; padding: 2px; pointer-events: none; background: linear-gradient(110deg, transparent 30%, #BAD9DA 45%, #fff 50%, #DDC9A4 55%, transparent 70%) 0 0 / 250% 100%; -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; animation: sweep 3.2s ease-in-out infinite; }
+.cta::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; background: linear-gradient(110deg, transparent 35%, rgba(255,255,255,.28) 50%, transparent 65%) 0 0 / 250% 100%; animation: sweep 3.2s ease-in-out infinite; }
+@keyframes sweep { 0% { background-position: 120% 0; } 60%, 100% { background-position: -120% 0; } }
+@media (prefers-reduced-motion: reduce) { .cta::before, .cta::after { animation: none; } }
+.frame { background: transparent; border: 0; }
+.stage::before, .stage::after { display: none; }
+.solo .frame { position: relative; }
+.in { position: relative; z-index: 1; }
+.badge.ok { background: var(--surface); border-color: var(--line); color: var(--cocoa); }
+.h { background: none; -webkit-background-clip: border-box; background-clip: border-box; color: var(--ink); font-family: var(--serif); font-weight: 400; letter-spacing: -.01em; line-height: 1.08; }
+.h.sm { font-size: clamp(32px, 3.6vw, 46px); }
+.sub { color: var(--ink2); }
+.progress .bar { background: rgba(76,51,51,.14); } .progress .bar i { background: var(--cocoa); }
+.progress .lbl { color: var(--ink2); } .progress .lbl b { color: var(--cocoa); }
+.num { background: var(--blush); color: var(--cocoa); border-color: rgba(76,51,51,.35); }
+.step::before { background: rgba(76,51,51,.25); }
+.step h3 { color: var(--ink); } .step p { color: var(--ink2); }
+.cta { min-height: 58px; padding: 0 28px; }
+.tcal-icon, [data-tcal="icon"] { border: 1px solid var(--line); box-shadow: 0 2px 6px -2px rgba(0,0,0,.12); }
+.tcal-icon:focus-visible, [data-tcal="icon"]:focus-visible { outline-color: var(--cocoa); }
+.video { border-color: var(--line); box-shadow: 0 30px 70px -34px rgba(76,51,51,.55); }
+.play { background: var(--cocoa); box-shadow: 0 0 0 10px rgba(255,255,255,.25), 0 10px 30px rgba(0,0,0,.3); }
+@media (max-width: 600px) { .h.sm { font-size: 32px; } }
 </style>
 </head>
 <body>
@@ -193,12 +222,12 @@ section.offen b { color: var(--fg); }
 </defs></svg>
 
 <style>.solo .frame{border:0;border-radius:0;min-height:100vh;min-height:100dvh}.solo .in{max-width:760px;margin:0 auto;padding-top:72px}</style>
-<main class="solo"><div class="frame stage"><div class="in">
+<main class="solo"><div class="frame stage"><div class="dots-top" aria-hidden="true"></div><div class="in">
       <span class="badge ok"><svg><use href="#check"/></svg>Anmeldung erfolgreich</span>
       <h3 class="h sm">Du bist dabei, jetzt fehlen nur noch 3 kurze Schritte.</h3>
       <div class="progress"><div class="bar"><i style="width:25%"></i></div><div class="lbl"><span><b>Anmeldung erledigt</b></span><span>noch 3 Schritte</span></div></div>
       <div class="steps">
-        <div class="step"><span class="num">1</span><div><h3>Aktiviere die WhatsApp-Erinnerung</h3><p>Hier bekommst du am Sonntag den Zoom-Link, damit du nicht suchen musst.</p><a class="cta" href="#v1"><svg><use href="#wa"/></svg>Jetzt WhatsApp aktivieren</a></div></div>
+        <div class="step"><span class="num">1</span><div><h3>Hol dir dein Geschenk über WhatsApp</h3><p>Dort bekommst du sofort Nicks PDF mit 25 Hebeln für mehr Energie und Fokus und am Sonntag den Zoom-Link, damit du nicht suchen musst.</p><a class="cta" href="#whatsapp-link-folgt"><svg><use href="#wa"/></svg>PDF jetzt über WhatsApp holen</a></div></div>
         <div class="step"><span class="num">2</span><div><h3>Trag dir jetzt den Termin ein</h3><p>Sonntag, 6. Dezember 2026, 11 Uhr. Ein Klick auf deinen Kalender genügt.</p><div class="tcal-icons" data-tcal="icons" role="group" aria-label="Termin in deinem Kalender speichern">
   <a class="tcal-icon" data-tcal="icon" href="https://www.nickhaasmann.com/webinar-kalender/webinar.ics" title="Apple Kalender" aria-label="Apple Kalender"><svg viewBox="0 0 70 70" aria-hidden="true"><g transform="matrix(0.868209, 0, 0, 0.868209, 9.927841, 7.398795)"> <path d="M41.8,30.5c-0.1-6.2,5.1-9.2,5.3-9.4c-2.9-4.2-7.4-4.8-9-4.9c-3.8-0.4-7.5,2.3-9.4,2.3c-1.9,0-4.9-2.2-8.1-2.1 c-4.2,0.1-8,2.4-10.2,6.2C6,30.1,9.3,41.2,13.5,47.3c2.1,3,4.5,6.3,7.8,6.2c3.1-0.1,4.3-2,8.1-2s4.8,2,8.1,2c3.4-0.1,5.5-3,7.5-6 c2.4-3.5,3.3-6.8,3.4-7C48.3,40.4,41.8,38,41.8,30.5z" fill="rgb(96, 96, 96)"/> <path d="M35.6,12.2c1.7-2.1,2.9-5,2.6-7.9c-2.5,0.1-5.5,1.6-7.2,3.7c-1.6,1.8-3,4.8-2.6,7.6 C31,15.9,33.9,14.3,35.6,12.2z" fill="rgb(96, 96, 96)"/> </g></svg></a>
   <a class="tcal-icon" data-tcal="icon" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=%5BLIVE-Webinar%5D%20Nick%20Haasmann%3A%20zum%20letzten%20Mal%20%C3%B6ffentlich&amp;dates=20261206T110000%2F20261206T123000&amp;ctz=Europe%2FVienna&amp;details=Nick%20Haasmann%20zeigt%20zum%20letzten%20Mal%20%C3%B6ffentlich%20das%20System%2C%20mit%20dem%20er%20High-Performer%20in%20Topform%20bringt.%0A%0ADeinen%20Zoom-Link%20bekommst%20du%20per%20Mail%20und%20WhatsApp.&amp;location=" target="_blank" rel="noopener" title="Google Kalender" aria-label="Google Kalender"><svg viewBox="0 0 70 70" aria-hidden="true"><g transform="matrix(0.28233, 0, 0, 0.28233, 17.023346, 18.311413)"> <path d="M27.6,64c0-4.2,0.7-8.1,1.9-11.9L7.9,35.6C3.7,44.2,1.4,53.8,1.4,64c0,10.2,2.4,19.8,6.6,28.3l21.6-16.5 C28.3,72.1,27.6,68.1,27.6,64" fill="rgb(251, 188, 5)"/> <path d="M65.5,26.2c9,0,17.2,3.2,23.6,8.4L107.7,16C96.3,6.1,81.8,0,65.5,0C40.1,0,18.4,14.5,7.9,35.6l21.6,16.5 C34.5,37,48.6,26.2,65.5,26.2" fill="rgb(234, 67, 53)"/> <path d="M65.5,101.8c-16.8,0-31-10.9-35.9-25.9L7.9,92.4C18.4,113.5,40.1,128,65.5,128c15.6,0,30.6-5.6,41.8-16 L86.7,96.2C81,99.9,73.7,101.8,65.5,101.8" fill="rgb(52, 168, 83)"/> <path d="M126.6,64c0-3.8-0.6-7.9-1.5-11.6H65.5v24.7h34.4c-1.7,8.4-6.4,14.9-13.1,19.1l20.5,15.8 C119,101.1,126.6,84.9,126.6,64" fill="rgb(66, 133, 244)"/> </g></svg></a>
